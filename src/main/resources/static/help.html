@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Url Shortener - Help</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="icon" type="image/png" href="/url-icon.png"/>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/url-icon.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+        <strong>Url Shortener</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/help">Help</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="main-div">
+    <div class="help-div">
+        <h3>About</h3>
+        <p>This web application represents solution for the <b>Infobip</b> job task.</p>
+        <p><b>Short description:</b> Web application (with proper API) for shortening long URLs.</p>
+        <p><b>Author:</b> Marino Voćanec</p>
+    </div>
+
+    <div class="help-div">
+        <h3>Installation</h3>
+        <p>
+            Requirements:
+            <ol>
+                <li>Connection with <b>Internet</b> (user pages at <b>'/'</b> and <b>'/help'</b> use <b>Bootstrap</b>, <b>jQuery</b> and <b>SweetAlert</b>).</li>
+                <li><b>Java</b> version >= 11 (<a href="https://www.oracle.com/java/technologies/javase-jdk16-downloads.html">Download JDK</a>).</li>
+                <li><b>Apache Maven</b> (<a href="https://maven.apache.org/download.cgi">Download Apache Maven</a>).</li>
+            </ol>
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h3>Compile and run application</h3>
+        <p>
+            <h4>Running jar:</h4>
+            <ol>
+                <li>Download project.</li>
+                <li>Open terminal.</li>
+                <li>Navigate to project directory.</li>
+                <li>For fresh compile and run, execute following commands:
+                    <pre>mvn package</pre>
+                    <pre>cd target</pre>
+                    <pre>java -jar urlshortener-0.0.1-SNAPSHOT.jar</pre>
+                    If on Windows make sure <b>PATH</b> variable is configured for <b>Java</b> and <b>Maven</b>!</li>
+                <li>In browser open frontend page: <a href="http://localhost:8080">localhost:8080</a> or <a href="http://127.0.0.1:8080">127.0.0.1:8080</a>.</li>
+            </ol>
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h3>Generating short url identifiers</h3>
+        <p>
+            For this task two algorithms for generating short url identifiers were implemented:
+            <ol>
+                <li>
+                    Naive (inefficient and not scalable) approach which generates random short
+                    url identifiers iteratively until non-seen new identifier is found.
+                </li>
+                <li>
+                    More efficient and scalable approach where short url identifiers are generated
+                    by encoding url mapping auto-incremented id to base62. Since this algorithm
+                    is very predictable and iteration over all possible generated identifiers is possible,
+                    secure random preamble of fixed length is prepended to the generated base62
+                    output.
+                </li>
+            </ol>
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>API: Create account</h5>
+        <ul>
+            <li><b>Method:</b> POST</li>
+            <li><b>URI:</b> /account</li>
+            <li><b>Request Body:</b> application/json</li>
+            <li><b>Response Type:</b> application/json</li>
+            <li><b>Authentication:</b> no</li>
+        </ul>
+        <p>
+            Creates new user account.
+        </p>
+        <p>
+            Request body expects exactly one string parameter <b>accountId</b> which represent
+            username. Username must be unique and consist of alphanumeric characters only (a-z, A-Z, 0-9).
+            Blanks are not allowed. Furthermore, username cannot be longer than 100 characters.
+            Response body returns three parameters. <b>success</b> which is true or  false depending on the
+            result of the call. <b>description</b> is a short message which  explains the outcome. <b>password</b>
+            which is present if and only if account was successfully created. <b>password</b> is a string which
+            contains exactly 8 alphanumeric characters.
+        </p>
+        <p>
+            Returns status code <b>201 Created</b> if account was successfully created,
+            <b>400 Bad Request</b> otherwise.
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>API: Create URL mapping</h5>
+        <ul>
+            <li><b>Method:</b> POST</li>
+            <li><b>URI:</b> /register</li>
+            <li><b>Request Body:</b> application/json</li>
+            <li><b>Response Type:</b> application/json</li>
+            <li><b>Authentication:</b> yes (set Authorization header with username and password)</li>
+        </ul>
+        <p>
+            Creates new URL mapping for logged user.
+        </p>
+        <p>
+            Request body expects one or two parameters. First, <b>url</b> which represents
+            long URL to be shorten (this parameter is mandatory). Other parameter <b>redirectType</b>
+            (which is optional) is an integer with two possible values: 301 or 302 and represents
+            redirection status: Moved Permanently or Found. Response body returns <b>url</b> parameter
+            only, if URL mapping was successfully created, <b>url</b> and <b>errorMessage</b> if long URL
+            was already registered for this user, or <b>errorMessage</b> only if other error were to occur
+            (i.e. provided <b>url</b> is not a valid URL or <b>redirectType</b> is not 301 or 302).
+        </p>
+        <p>
+            Returns status code <b>201 Created</b> if URL  was successfully created, <b>400 Bad Request</b>
+            if error occurred or <b>401 Unauthorized</b> if user authentication failed.
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>API: Get statistic</h5>
+        <ul>
+            <li><b>Method:</b> GET</li>
+            <li><b>URI:</b> /statistic/{accountId}</li>
+            <li><b>Response Type:</b> application/json</li>
+            <li><b>Authentication:</b> yes (set Authorization header with username and password)</li>
+        </ul>
+        <p>
+            Retrieves statistic map (pair: long URL -> number of short URL redirects) for logged user.
+        </p>
+        <p>
+            Parameter <b>{accountId}</b> in URI represents username and should be equal to the username
+            provided in the Authorization header. Users can only see their own statistic map.
+            Response body returns map whose keys are long URLs, and values are number of short URL redirects,
+            that is short URL visits.
+        </p>
+        <p>
+            Returns status code <b>200 OK</b> if statistic was successfully retrieved or <b>403 Forbidden</b>
+            if user tried to access some other statistic other than his own. Even though <b>404 Not Found</b>
+            could be returned in case statistic for a non-existing user is requested, <b>403 Forbidden</b> was
+            chosen after all as it does not provide any additional information to the potential attacker.
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>Redirect URL</h5>
+        <ul>
+            <li><b>Method:</b> GET</li>
+            <li><b>URI:</b> /{shortUrlIdentifier}</li>
+            <li><b>Authentication:</b> no</li>
+        </ul>
+        <p>
+            Redirects to the long URL which corresponds to path variable <b>{shortUrlIdentifier}</b>.
+        </p>
+        <p>
+            Parameter <b>{shortUrlIdentifier}</b> in URI represents unique short URL identifier used for redirection.
+            Important thing to emphasize is that anyone can access short URL. This application is designed in
+            a way which allows users to create their own short URLs and then share them amongst community.
+        </p>
+        <p>
+            Redirects to the long URL (<b>301</b> or <b>302</b>), or returns <b>404 Not Found</b>
+            if mapping for given <b>{shortUrlIdentifier}</b> does not exist.
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>Home page</h5>
+        <ul>
+            <li><b>Method:</b> GET</li>
+            <li><b>URI:</b> /</li>
+            <li><b>Response Type:</b> text/html</li>
+            <li><b>Authentication:</b> no</li>
+        </ul>
+        <p>
+            Simple fronted page which allows testing and inspection of developed application.
+        </p>
+        <p>
+            Consists of 4 parts:
+            <ul>
+                <li>Create account</li>
+                <li>Create URL mapping</li>
+                <li>Get statistic</li>
+                <li>Inputs for <b>Authorization</b> header (username and password)</li>
+            </ul>
+            Upon executing wanted action, modal window with color-coded JSON Response Body is shown. When executing
+            <b>Create URL mapping</b> or <b>Get statistic</b>, values from username and password inputs are taken.
+        </p>
+    </div>
+
+    <div class="help-div">
+        <h5>Help</h5>
+        <ul>
+            <li><b>Method:</b> GET</li>
+            <li><b>URI:</b> /help</li>
+            <li><b>Response Type:</b> text/html</li>
+            <li><b>Authentication:</b> no</li>
+        </ul>
+        <p>
+            Page with help and other application information.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

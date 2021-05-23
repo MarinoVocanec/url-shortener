@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Url Shortener - Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Custom CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="icon" type="image/png" href="/url-icon.png"/>
+    <script src="/home.js"></script>
+    <script src="/pretty-json.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/url-icon.png" width="30" height="30" class="d-inline-block align-top" alt="logo">
+        <strong>Url Shortener</strong>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/help">Help</a>
+            </li>
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" id="username-input" type="text" placeholder="Username">
+            <input class="form-control mr-sm-2" id="password-input" type="password" placeholder="Password">
+        </div>
+    </div>
+</nav>
+
+<div class="main-div">
+    <div class="section-div">
+        <h3>Create account</h3>
+        <div class="form-group">
+            <label for="account-id-create-input">Account name</label>
+            <input type="text" class="form-control" id="account-id-create-input" placeholder="Enter account name">
+        </div>
+        <button type="submit" class="btn btn-block btn-orange" id="btn-create-account">Create account</button>
+    </div>
+
+    <div class="section-div">
+        <h3>Create URL mapping</h3>
+        <div class="form-group">
+            <label for="url-input">URL</label>
+            <input type="text" class="form-control" id="url-input" placeholder="Enter URL">
+        </div>
+        <div class="form-group">
+            <label for="redirect-type-input">Redirect type</label>
+            <select class="form-control" id="redirect-type-input">
+                <option>301</option>
+                <option selected>302</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-block btn-orange" id="btn-create-url-mapping">Create URL mapping</button>
+    </div>
+
+    <div class="section-div">
+        <h3>Get statistic</h3>
+        <div class="form-group">
+            <label for="account-id-get-input">Account name</label>
+            <input type="text" class="form-control" id="account-id-get-input" placeholder="Enter account name">
+        </div>
+        <button type="submit" class="btn btn-block btn-orange" id="btn-get-statistic">Get statistic</button>
+    </div>
+</div>
+
+</body>
+</html>

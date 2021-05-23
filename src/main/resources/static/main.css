@@ -1,0 +1,51 @@
+.main-div {
+    margin: 30px;
+}
+
+.section-div {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 50px;
+}
+
+.help-div {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding-bottom: 30px;
+}
+
+.btn-orange {
+    background-color: #ff5a00;
+    color: #ffffff;
+}
+
+.swal-custom {
+    width: 600px !important;
+    text-align: left;
+}
+
+pre {
+    outline: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: darkorange;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: magenta;
+}
+
+.key {
+    color: red;
+}
